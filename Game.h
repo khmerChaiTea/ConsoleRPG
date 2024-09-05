@@ -1,12 +1,8 @@
 #pragma once
 
-#include<iostream>
-#include<iomanip>
 #include<ctime>
 #include "Functions.h"
 #include "Character.h"
-
-using namespace std;
 
 class Game
 {
@@ -17,6 +13,7 @@ public:
 	// Operators
 
 	// Functions
+	void initGame();
 	void mainMenu();
 
 	// Accessors
@@ -27,5 +24,8 @@ public:
 private:
 	int choice;
 	bool playing;
+
+	// Character related
+	Character character;
 };
 

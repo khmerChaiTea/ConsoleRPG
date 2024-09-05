@@ -1,10 +1,10 @@
 #pragma once
 
 #include<iostream>
-#include<string>
 #include<iomanip>
 #include<ctime>
 #include "Functions.h"
+#include "Character.h"
 
 using namespace std;
 

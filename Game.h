@@ -6,6 +6,13 @@
 
 class Game
 {
+private:
+	int choice;
+	bool playing;
+
+	// Character related
+	Character character;
+
 public:
 	Game();
 	virtual ~Game();
@@ -20,12 +27,5 @@ public:
 	inline bool getPlaying() const { return this->playing; };
 
 	// Modifiers
-
-private:
-	int choice;
-	bool playing;
-
-	// Character related
-	Character character;
 };
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include<ctime>
-#include "Functions.h"
 #include "Character.h"
 #include<vector>
 #include<fstream>

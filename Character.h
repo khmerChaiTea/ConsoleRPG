@@ -8,6 +8,10 @@ private:
 	double xPos;
 	double yPos;
 
+	Inventory inventory;
+	Weapon weapon;
+	Armor armor;
+
 	std::string name;
 	int level;
 	int exp;
@@ -18,10 +22,11 @@ private:
 	int dexterity;
 	int intelligence;
 
-	int hp;
+
 	int hpMax;
-	int stamina;
+	int hp;
 	int staminaMax;
+	int stamina;
 	int damageMin;
 	int damageMax;
 	int defence;

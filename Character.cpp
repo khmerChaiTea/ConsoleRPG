@@ -41,23 +41,24 @@ void Character::initialize(const std::string name)
 	this->name = name;
 	this->level = 1;
 	this->exp = 0;
-	this->expNext = static_cast<int>((50 / 3) * ((pow(level, 3) -
-		6 * pow(level, 2)) +
-		17 * level - 12)) + 100;
+	this->expNext = static_cast<int>(
+		(50 / 3) * ((pow(level, 3)
+			- 6 * pow(level, 2)) +
+			17 * level - 12)) + 100;
 
 	this->strength = 5;
 	this->vitality = 5;
 	this->dexterity = 5;
 	this->intelligence = 5;
 
-	this->hp = 10;
-	this->hpMax = 10;
-	this->stamina = 10;
-	this->staminaMax = 10;
-	this->damageMin = 1;
-	this->damageMax = 4;
-	this->defence = 1;
-	this->luck = 1;
+	this->hpMax = (this->vitality * 2) + (this->strength / 2);
+	this->hp = this->hpMax;
+	this->staminaMax = (this->vitality) + (this->strength / 2) + (this->dexterity / 3);
+	this->stamina = this->staminaMax;
+	this->damageMin = this->strength;
+	this->damageMax = this->strength + 2;
+	this->defence = this->dexterity + (this->intelligence / 2);
+	this->luck = this->intelligence;
 
 	this->statPoints = 0;
 	this->skillPoints = 0;

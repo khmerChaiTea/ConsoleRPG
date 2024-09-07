@@ -3,6 +3,8 @@
 #include<ctime>
 #include "Functions.h"
 #include "Character.h"
+#include<vector>
+#include<fstream>
 
 class Game
 {
@@ -11,7 +13,9 @@ private:
 	bool playing;
 
 	// Character related
-	Character character;
+	int activeCharacter;
+	std::vector<Character> characters;
+	std::string fileName;
 
 public:
 	Game();
@@ -22,6 +26,9 @@ public:
 	// Functions
 	void initGame();
 	void mainMenu();
+	void createNewCharacter();
+	void saveCharacter();
+	void loadCharacter();
 
 	// Accessors
 	inline bool getPlaying() const { return this->playing; };

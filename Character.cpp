@@ -99,3 +99,20 @@ void Character::levelUP()
 		this->skillPoints++;
 	}
 }
+
+std::string Character::getAsString() const
+{
+	return std::to_string(xPos) + " "
+		+ std::to_string(xPos) + " "
+		+ name + " "
+		+ std::to_string(level) + " "
+		+ std::to_string(exp) + " "
+		+ std::to_string(strength) + " "
+		+ std::to_string(vitality) + " "
+		+ std::to_string(dexterity) + " "
+		+ std::to_string(intelligence) + " "
+		+ std::to_string(hp) + " "
+		+ std::to_string(stamina) + " "
+		+ std::to_string(statPoints) + " "
+		+ std::to_string(skillPoints);
+}

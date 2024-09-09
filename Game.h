@@ -1,9 +1,8 @@
 #pragma once
 
+#include "Event.h"
 #include<ctime>
-#include "Character.h"
 #include<vector>
-#include<fstream>
 
 class Game
 {
@@ -28,7 +27,7 @@ public:
 	void createNewCharacter();
 	void saveCharacter();
 	void loadCharacter();
-	void travel();
+	void Travel();
 
 	// Accessors
 	inline bool getPlaying() const { return this->playing; };

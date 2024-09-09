@@ -28,6 +28,7 @@ public:
 	void createNewCharacter();
 	void saveCharacter();
 	void loadCharacter();
+	void travel();
 
 	// Accessors
 	inline bool getPlaying() const { return this->playing; };

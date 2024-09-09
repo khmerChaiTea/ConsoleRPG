@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Inventory.h"
+#include "Enemy.h"
 
 class Character
 {
@@ -32,7 +33,8 @@ private:
 	int stamina;
 	int damageMin;
 	int damageMax;
-	int defence;
+	int defense;
+	int accuracy;
 	int luck;
 
 	int statPoints;
@@ -60,7 +62,8 @@ public:
 	inline const int& getStamina() const { return this->stamina; }
 	inline const int& getDamageMin() const { return this->damageMin; }
 	inline const int& getDamageMax() const { return this->damageMax; }
-	inline const int& getDefence() const { return this->defence; }
+	inline const int& getDefense() const { return this->defense; }
+	inline const int& getAccuracy() const { return this->accuracy; }
 
 	// Modifier
 };

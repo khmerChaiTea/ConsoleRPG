@@ -21,6 +21,11 @@ void Game::initGame()
 
 void Game::mainMenu()
 {
+	if (this->characters[activeCharacter].getExp() >= this->characters[activeCharacter].getExpNext())
+	{
+		std::cout << "LEVEL UP AVAILABLE!\n\n";
+	}
+
 	std::cout << "= Main Menu =" << std::endl << std::endl;
 
 	std::cout << "0: Quit" << std::endl;
@@ -55,7 +60,7 @@ void Game::mainMenu()
 		break;
 
 	case 3: // Level Up
-
+		this->characters[activeCharacter].levelUP();
 		break;
 
 	case 4: // Rest

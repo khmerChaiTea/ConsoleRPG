@@ -97,7 +97,7 @@ void Character::printStats() const
 
 void Character::levelUP()
 {
-	while (this->exp >= this->expNext)
+	if (this->exp >= this->expNext)
 	{
 		this->exp -= this->expNext;
 		this->level++;
@@ -107,6 +107,12 @@ void Character::levelUP()
 
 		this->statPoints++;
 		this->skillPoints++;
+
+		std::cout << "YOU ARE NOW LEVEL " << this->level << "!\n\n";
+	}
+	else
+	{
+		std::cout << "NOT ENOUGH EXP!\n\n";
 	}
 }
 

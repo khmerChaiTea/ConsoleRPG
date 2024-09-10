@@ -44,12 +44,15 @@ void Event::puzzleEncounter(Character& character)
 	bool completed = false;
 	int userAns = 0;
 	int chances = 3;
+	int gainExp = chances * character.getLevel() * (rand() % 10 + 1);
 
 	Puzzle puzzle("Puzzles/1.txt");
 
 	while (!completed && chances > 0)
 	{
+		std::cout << chances << "\n\n";
 		chances--;
+	
 		std::cout << puzzle.getAsString() << "\n";
 
 		std::cout << "\nYour Answer: ";
@@ -59,17 +62,19 @@ void Event::puzzleEncounter(Character& character)
 		if (puzzle.getCorrectAns() == userAns)
 		{
 			completed = true;
-			// Give user exp etc and continue
+
+			character.gainExp(gainExp);
+			std::cout << "YOU GAINED " << gainExp << " EXP!\n\n";
 		}
 	}
 
 	if (completed)
 	{
-		std::cout << "Congrats Puzzle is solved!\n";
+		std::cout << "Congrats Puzzle is solved!\n\n";
 	}
 	else
 	{
-		std::cout << "Failed!\n";
+		std::cout << "Failed!\n\n";
 	}
 
 }

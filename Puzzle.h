@@ -15,5 +15,7 @@ public:
 	Puzzle(std::string fileName);
 	virtual ~Puzzle();
 	std::string getAsString();
+
+	const int& getCorrectAns() const { return this->correctAnswer; }
 };
 

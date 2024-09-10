@@ -58,7 +58,7 @@ void Event::puzzleEncounter(Character& character)
 
 		if (puzzle.getCorrectAns() == userAns)
 		{
-			completed - true;
+			completed = true;
 			// Give user exp etc and continue
 		}
 	}

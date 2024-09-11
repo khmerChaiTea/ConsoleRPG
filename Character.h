@@ -3,12 +3,11 @@
 #include "Inventory.h"
 #include "Enemy.h"
 
+using namespace std;
+
 class Character
 {
 private:
-	double xPos;
-	double yPos;
-
 	int distanceTraveled;
 
 	Inventory inventory;
@@ -19,7 +18,7 @@ private:
 	Armor armor_legs;
 	int gold;
 
-	std::string name;
+	string name;
 	int level;
 	int exp;
 	int expNext;
@@ -45,19 +44,23 @@ private:
 
 public:
 	Character();
+	Character(string name, int distanceTraveled,
+		int gold, int level, int exp, int strength,
+		int vitality, int dexterity, int intelligence,
+		int hp, int stamina, int statPoints, int skillPoints);
 	virtual ~Character();
 
 	// Functions
-	void initialize(const std::string name);
+	void initialize(const string name);
 	void printStats() const;
+	void updateStats();
 	void levelUP();
-	std::string getAsString() const;
+	string getAsString() const;
+
 
 	// Accessors
-	inline const double& getX() const { return this->xPos; }
-	inline const double& getY() const { return this->yPos; }
 	inline const int& getDistTravel() const { return this->distanceTraveled; }
-	inline const std::string& getName() const { return this->name; }
+	inline const string& getName() const { return this->name; }
 	inline const int& getLevel() const { return this->level; }
 	inline const int& getExp() const { return this->exp; }
 	inline const int& getExpNext() const { return this->expNext; }

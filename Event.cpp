@@ -50,31 +50,42 @@ void Event::puzzleEncounter(Character& character)
 
 	while (!completed && chances > 0)
 	{
-		std::cout << chances << "\n\n";
+		cout << "Chances: " << chances << "\n\n";
 		chances--;
-	
-		std::cout << puzzle.getAsString() << "\n";
+		cout << puzzle.getAsString() << "\n";
 
-		std::cout << "\nYour Answer: ";
-		std::cin >> userAns;
-		std::cout << "\n";
+		cout << "\nYour Answer: ";
+		cin >> userAns;
+
+		while (cin.fail())
+		{
+			cout << "Faulty input!" << "\n";
+			cin.clear();
+			cin.ignore(100, '\n');
+
+			cout << "\nYour Answer: ";
+			cin >> userAns;
+		}
+
+		cin.ignore(100, '\n');
+		cout << "\n";
 
 		if (puzzle.getCorrectAns() == userAns)
 		{
 			completed = true;
 
 			character.gainExp(gainExp);
-			std::cout << "YOU GAINED " << gainExp << " EXP!\n\n";
+			cout << "YOU GAINED " << gainExp << " EXP!\n\n";
 		}
 	}
 
 	if (completed)
 	{
-		std::cout << "Congrats Puzzle is solved!\n\n";
+		cout << "Congrats Puzzle is solved!\n\n";
 	}
 	else
 	{
-		std::cout << "Failed!\n\n";
+		cout << "Failed!\n\n";
 	}
 
 }

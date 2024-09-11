@@ -50,5 +50,5 @@ std::string Puzzle::getAsString()
 	//	+ std::to_string(this->correctAnswer) + "\n";
 
 	return this->question + "\n\n"
-		+ answers + "\n";
+		+ answers;
 }

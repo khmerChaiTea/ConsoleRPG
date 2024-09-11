@@ -105,25 +105,65 @@ void Character::initialize(const string name)
 
 void Character::printStats() const
 {
-	cout << "= Character Sheet =" << endl;
-	cout << endl;
-	cout << "= Name: " << this->name << endl;
-	cout << "= Level: " << this->level << endl;
-	cout << "= Exp: " << this->exp << endl;
-	cout << "= Exp to next level: " << this->expNext << endl;
-	cout << endl;
-	cout << "= Strength: " << this->strength << endl;
-	cout << "= Vitality: " << this->vitality << endl;
-	cout << "= Dexterity: " << this->dexterity << endl;
-	cout << "= Intelligence: " << this->intelligence << endl;
-	cout << endl;
-	cout << "= HP: " << this->hp << " / " << this->hpMax << endl;
-	cout << "= Stamina: " << this->stamina << " / " << this->staminaMax << endl;
-	cout << "= Damage: " << this->damageMin<< " - " << this->damageMax << endl;
-	cout << "= Defense: " << this->defense << endl;
-	cout << "= Accuracy: " << this->accuracy << endl;
-	cout << "= Luck: " << this->luck << endl;
-	cout << endl;
+	cout << "= Character Sheet =" << "\n";
+	cout << "\n";
+	cout << "= Name: " << this->name << "\n";
+	cout << "= Level: " << this->level << "\n";
+	cout << "= Exp: " << this->exp << "\n";
+	cout << "= Exp to next level: " << this->expNext << "\n";
+	cout << "\n";
+	cout << "= Strength: " << this->strength << "\n";
+	cout << "= Vitality: " << this->vitality << "\n";
+	cout << "= Dexterity: " << this->dexterity << "\n";
+	cout << "= Intelligence: " << this->intelligence << "\n";
+	cout << "\n";
+	cout << "= HP: " << this->hp << " / " << this->hpMax << "\n";
+	cout << "= Stamina: " << this->stamina << " / " << this->staminaMax << "\n";
+	cout << "= Damage: " << this->damageMin<< " - " << this->damageMax << "\n";
+	cout << "= Defense: " << this->defense << "\n";
+	cout << "= Accuracy: " << this->accuracy << "\n";
+	cout << "= Luck: " << this->luck << "\n";
+	cout << "\n";
+}
+
+string Character::getAsString() const
+{
+	return name + " "
+		+ to_string(distanceTraveled) + " "
+		+ to_string(gold) + " "
+		+ to_string(level) + " "
+		+ to_string(exp) + " "
+		+ to_string(strength) + " "
+		+ to_string(vitality) + " "
+		+ to_string(dexterity) + " "
+		+ to_string(intelligence) + " "
+		+ to_string(hp) + " "
+		+ to_string(stamina) + " "
+		+ to_string(statPoints) + " "
+		+ to_string(skillPoints);
+}
+
+void Character::levelUP()
+{
+	if (this->exp >= this->expNext)
+	{
+		this->exp -= this->expNext;
+		this->level++;
+		this->expNext = static_cast<int>((50 / 3) * ((pow(level, 3) -
+			6 * pow(level, 2)) +
+			17 * level - 12)) + 100;
+
+		this->statPoints++;
+		this->skillPoints++;
+
+		this->updateStats();
+
+		cout << "YOU ARE NOW LEVEL " << this->level << "!\n\n";
+	}
+	else
+	{
+		cout << "NOT ENOUGH EXP!\n\n";
+	}
 }
 
 void Character::updateStats()
@@ -142,40 +182,35 @@ void Character::updateStats()
 	this->luck = this->intelligence;
 }
 
-void Character::levelUP()
+void Character::addToStat(int stat, int value)
 {
-	if (this->exp >= this->expNext)
-	{
-		this->exp -= this->expNext;
-		this->level++;
-		this->expNext = static_cast<int>((50 / 3) * ((pow(level, 3) -
-			6 * pow(level, 2)) +
-			17 * level - 12)) + 100;
-
-		this->statPoints++;
-		this->skillPoints++;
-
-		cout << "YOU ARE NOW LEVEL " << this->level << "!\n\n";
-	}
+	if (this->statPoints < value)
+		cout << "ERROR! NOT ENOUGHT STATPOINTS!\n";
 	else
 	{
-		cout << "NOT ENOUGH EXP!\n\n";
-	}
-}
+		switch (stat)
+		{
+		case 0:
+			this->strength += value;
+			break;
 
-string Character::getAsString() const
-{
-	return name + " "
-		+ to_string(distanceTraveled) + " "
-		+ to_string(gold) + " "
-		+ to_string(level) + " "
-		+ to_string(exp) + " "
-		+ to_string(strength) + " "
-		+ to_string(vitality) + " "
-		+ to_string(dexterity) + " "
-		+ to_string(intelligence) + " "
-		+ to_string(hp) + " "
-		+ to_string(stamina) + " "
-		+ to_string(statPoints) + " "
-		+ to_string(skillPoints);
+		case 1:
+			this->vitality += value;
+			break;
+
+		case 2:
+			this->dexterity += value;
+			break;
+
+		case 3:
+			this->intelligence += value;
+			break;
+
+		default:
+			cout << "NO SUCH STAT!\n";
+			break;
+		}
+
+		this->statPoints -= value;
+	}
 }

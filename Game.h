@@ -28,6 +28,7 @@ public:
 	void initGame();
 	void mainMenu();
 	void createNewCharacter();
+	void levelUpCharacter();
 	void saveCharacter();
 	void loadCharacter();
 	void Travel();

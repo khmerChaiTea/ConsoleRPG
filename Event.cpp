@@ -54,7 +54,7 @@ void Event::puzzleEncounter(Character& character)
 		chances--;
 		cout << puzzle.getAsString() << "\n";
 
-		cout << "\nYour Answer: ";
+		cout << "Your Answer: ";
 		cin >> userAns;
 
 		while (cin.fail())
@@ -63,7 +63,7 @@ void Event::puzzleEncounter(Character& character)
 			cin.clear();
 			cin.ignore(100, '\n');
 
-			cout << "\nYour Answer: ";
+			cout << "Your Answer: ";
 			cin >> userAns;
 		}
 

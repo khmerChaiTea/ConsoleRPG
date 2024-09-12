@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Event.h"
-#include "dArr.h"
 #include<ctime>
 #include<vector>
 #include<sstream>
@@ -19,6 +18,9 @@ private:
 	std::vector<Character> characters;
 	std::string fileName;
 
+	// Enemies
+	dArr<Enemy> enemies;
+
 public:
 	Game();
 	virtual ~Game();
@@ -32,6 +34,7 @@ public:
 	void levelUpCharacter();
 	void saveCharacter();
 	void loadCharacter();
+	void selectCharacter();
 	void Travel();
 
 	// Accessors

@@ -17,6 +17,14 @@ Game::~Game()
 void Game::initGame()
 {
 	createNewCharacter();
+
+	dArr<int> ints;
+
+	for (size_t i = 0; i < 20; i++)
+	{
+		ints.push(rand()% 10);
+		cout << ints[i] << "\n";
+	}
 }
 
 void Game::mainMenu()

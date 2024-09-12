@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Event.h"
+#include "dArr.h"
 #include<ctime>
 #include<vector>
 #include<sstream>

@@ -15,8 +15,8 @@ private:
 
 	// Character related
 	int activeCharacter;
-	std::vector<Character> characters;
-	std::string fileName;
+	vector<Character> characters;
+	string fileName;
 
 	// Enemies
 	dArr<Enemy> enemies;
@@ -42,4 +42,3 @@ public:
 
 	// Modifiers
 };
-

@@ -45,9 +45,10 @@ void Game::mainMenu()
 	cout << "4: Rest" << "\n";
 	cout << "5: Character sheet" << "\n";
 	cout << "6: Create new character" << "\n";
-	cout << "7: Save characters" << "\n";
-	cout << "8: Load characters" << "\n";
-	cout << "9: Select characters" << "\n";
+	cout << "7: Select characters" << "\n";
+	cout << "8: Save characters" << "\n";
+	cout << "9: Load characters" << "\n";
+
 	cout << "\n";
 
 	cout << "\n" << "Choice: ";
@@ -98,16 +99,17 @@ void Game::mainMenu()
 		saveCharacter();
 		break;
 
-	case 7: // Save character
-		saveCharacter();
+	case 7: // Load character
+		selectCharacter();
 		break;
 
-	case 8: // Load character
-		loadCharacter();
+	case 8: // Save character
+		saveCharacter();
+		cout << "Character saved successfully.";
 		break;
 
 	case 9: // Load character
-		selectCharacter();
+		loadCharacter();
 		break;
 
 	default:
@@ -205,9 +207,11 @@ void Game::saveCharacter()
 
 void Game::loadCharacter()
 {
-	ifstream inFile(fileName);
+	saveCharacter();
 
 	this->characters.clear();
+
+	ifstream inFile(fileName);
 
 	string name = "";
 	int distanceTraveled = 0;
@@ -224,45 +228,34 @@ void Game::loadCharacter()
 	int skillPoints = 0;
 
 	string line = "";
-	stringstream str;
 
 	if (inFile.is_open())
 	{
 		while (getline(inFile, line))
 		{
-			str.str() = line;
-			// Read from the file as long as the input operation succeeds
-			str >> name;
-			str >> distanceTraveled;
-			str >> gold;
-			str >> level;
-			str >> exp;
-			str >> strength;
-			str >> vitality;
-			str >> dexterity;
-			str >> intelligence;
-			str >> hp;
-			str >> stamina;
-			str >> statPoints;
-			str	>> skillPoints;
+			stringstream str(line); // Initialize stringstream with the line content
+
+			// Read all the character attributes from the line
+			str >> name >> distanceTraveled >> gold >> level >> exp
+				>> strength >> vitality >> dexterity >> intelligence
+				>> hp >> stamina >> statPoints >> skillPoints;
 
 			Character temp(name, distanceTraveled, gold, level,
 				exp, strength, vitality, dexterity, intelligence,
 				hp, stamina, statPoints, skillPoints);
-			this->characters.push_back(Character(temp));
+			this->characters.push_back(temp);
 
-			cout << "Character" << name << "loaded!\n";
-			str.clear();
+			cout << "Character " << name << " loaded!\n";
 		}
+
+		inFile.close();
 	}
 	else
 	{
 		cerr << "Unable to open file!" << "\n";
 	}
 
-	inFile.close();
-
-	if (this->characters.size() <= 0)
+	if (this->characters.size() == 0)
 	{
 		throw "ERROR! NO CHARACTER LOADED! OR EMPTY FILE!";
 	}
@@ -282,7 +275,7 @@ void Game::selectCharacter()
 
 	cin >> this->choice;
 
-	while (cin.fail() || this->choice >= this->characters.size() || this->choice < 0)
+	while (cin.fail() || this->choice > this->characters.size() || this->choice < 0)
 	{
 		cout << "Faulty input!" << "\n";
 		cin.clear();

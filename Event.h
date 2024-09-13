@@ -4,6 +4,7 @@
 #include "Puzzle.h"
 #include<stdlib.h>
 #include "dArr.h"
+#include<iostream>
 
 using namespace std;
 
@@ -21,4 +22,3 @@ public:
 	void enemyEncounter(Character& character, dArr<Enemy>& enemies);
 	void puzzleEncounter(Character& character);
 };
-

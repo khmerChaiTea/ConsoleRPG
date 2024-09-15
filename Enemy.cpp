@@ -8,8 +8,8 @@ Enemy::Enemy(int level)
 	this->damageMin = this->level * 4;
 	this-> damageMax = this->level * 5;
 	this->dropChance = rand() % 100 + 1;
-	this->defense = rand() % 100 + 1;
-	this->accuracy = rand() % 100 + 1;
+	this->defense = rand() % level * 5 + 1;
+	this->accuracy = rand() % level * 5 + 1;
 }
 
 Enemy::~Enemy()

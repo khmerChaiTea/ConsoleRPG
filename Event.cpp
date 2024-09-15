@@ -57,7 +57,7 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 
 	for (size_t i = 0; i < nrOfEnemies; i++)
 	{
-		enemies.push(Enemy(character.getLevel()));
+		enemies.push(Enemy(character.getLevel() + rand() % 3));
 	}
 
 	// Battle variables
@@ -126,8 +126,10 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 				{
 					cout << i << ": "
 						<< "Level: " << enemies[i].getLevel() << " - " <<
-						"Hp: " << enemies[i].getHp() << "/" << enemies[i].getHpMax()
-						<< "\n";
+						"Hp: " << enemies[i].getHp() << "/" << enemies[i].getHpMax() << " - " <<
+						"Defense: " << enemies[i].getDefense() << " - " <<
+						"Accuracy: " << enemies[i].getAccuracy() << " - " <<
+						"\n";
 				}
 
 				cout << "\n";
@@ -153,10 +155,10 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 				// Attack roll
 
 				combatTotal = enemies[choice].getDefense() + character.getAccuracy();
-				enemyTotal = enemies[choice].getDefense() / combatTotal * 100;
-				playerTotal = character.getAccuracy() / combatTotal * 100;
-				combatRollPlayer = rand() % playerTotal;
-				combatRollEnemy = rand() % enemyTotal;
+				enemyTotal = enemies[choice].getDefense() / (double)combatTotal * 100;
+				playerTotal = character.getAccuracy() / (double)combatTotal * 100;
+				combatRollPlayer = rand() % playerTotal + 1;
+				combatRollEnemy = rand() % enemyTotal + 1;
 
 				cout << "Player roll: " << combatRollPlayer << "\n";
 				cout << "Enemy roll: " << combatRollEnemy << "\n\n";

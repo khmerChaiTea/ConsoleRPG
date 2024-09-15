@@ -28,4 +28,6 @@ public:
 	inline int getExp() const { return this->level * 100; }
 	inline int getHp() const { return this->hp; }
 	inline int getHpMax() const { return this->hpMax; }
+	inline int getDefense() const { return this->defense; }
+	inline int getAccuracy() const { return this->accuracy; }
 };

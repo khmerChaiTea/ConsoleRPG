@@ -61,10 +61,13 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 	}
 
 	// Battle variables
-	int attackRoll = 0;
-	int defendRoll = 0;
 	int damage = 0;
 	int gainExp = 0;
+	int playerTotal = 0;
+	int enemyTotal = 0;
+	int combatTotal = 0;
+	int combatRollPlayer = 0;
+	int combatRollEnemy = 0;
 
 	while (!escape && !playerDefeated && !enemiesDefeated)
 	{
@@ -147,9 +150,18 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 				cin.ignore(100, '\n');
 				cout << "\n";
 
-				attackRoll = rand() % 100 + 1;
+				// Attack roll
 
-				if (attackRoll > 50) // Hit
+				combatTotal = enemies[choice].getDefense() + character.getAccuracy();
+				enemyTotal = enemies[choice].getDefense() / combatTotal * 100;
+				playerTotal = character.getAccuracy() / combatTotal * 100;
+				combatRollPlayer = rand() % playerTotal;
+				combatRollEnemy = rand() % enemyTotal;
+
+				cout << "Player roll: " << combatRollPlayer << "\n";
+				cout << "Enemy roll: " << combatRollEnemy << "\n\n";
+
+				if (combatRollPlayer > combatRollEnemy) // Hit
 				{
 					cout << "HIT!" << "\n\n";
 

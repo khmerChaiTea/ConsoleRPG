@@ -1,6 +1,8 @@
 #pragma once
 #include "Item.h"
 
+enum armorType { HEAD = 0, CHEST, ARMS, LEGS };
+
 class Armor :
 	public Item
 {
@@ -19,5 +21,11 @@ public:
 
 	// Functions
 	std::string toString();
+
+	// Accessors
+	inline int getDefense() const { return this->defense; }
+	inline int getType() const { return this->type; }
+
+	// Modifiers
 };
 

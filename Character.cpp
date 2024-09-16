@@ -99,6 +99,7 @@ void Character::printStats() const
 	cout << "= Level: " << this->level << "\n";
 	cout << "= Exp: " << this->exp << "\n";
 	cout << "= Exp to next level: " << this->expNext << "\n";
+	cout << "= Stat points: " << this->statPoints << "\n";
 	cout << "\n";
 	cout << "= Strength: " << this->strength << "\n";
 	cout << "= Vitality: " << this->vitality << "\n";
@@ -112,6 +113,24 @@ void Character::printStats() const
 	cout << "= Accuracy: " << this->accuracy << "\n";
 	cout << "= Luck: " << this->luck << "\n";
 	cout << "\n";
+	cout << "= Distance Traveled: " << this->distanceTraveled << "\n";
+	cout << "= Gold: " << this->gold << "\n";
+	cout << "\n";
+	cout << "= Weapon: " << this->weapon.getName() 
+		<< " Lvl: " << this->weapon.getLevel() 
+		<< " Dam: " << this->weapon.getDamageMin() << " - " << this->weapon.getDamageMax() << "\n";
+	cout << "= Armor Head: " << this->armor_head.getName()
+		<< " Lvl: " << this->armor_head.getLevel()
+		<< " Def: " << this->armor_head.getDefense() << "\n";
+	cout << "= Armor Chest: " << this->armor_chest.getName()
+		<< " Lvl: " << this->armor_chest.getLevel()
+		<< " Def: " << this->armor_chest.getDefense() << "\n";
+	cout << "= Armor Arms: " << this->armor_arms.getName()
+		<< " Lvl: " << this->armor_arms.getLevel()
+		<< " Def: " << this->armor_arms.getDefense() << "\n";
+	cout << "= Armor Legs: " << this->armor_legs.getName()
+		<< " Lvl: " << this->armor_legs.getLevel()
+		<< " Def: " << this->armor_legs.getDefense() << "\n";
 }
 
 string Character::getAsString() const

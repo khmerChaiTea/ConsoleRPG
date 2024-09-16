@@ -19,6 +19,6 @@ Weapon* Weapon::clone() const
 
 std::string Weapon::toString()
 {
-	std::string str = std::to_string(this->damageMin) + " " + std::to_string(this->damageMax);
+	std::string str = std::to_string(this->damageMin) + " - " + std::to_string(this->damageMax);
 	return str;
 }

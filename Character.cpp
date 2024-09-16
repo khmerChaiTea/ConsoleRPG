@@ -27,13 +27,12 @@ Character::Character()
 	this->luck = 0;
 
 	this->statPoints = 0;
-	this->skillPoints = 0;
 }
 
 Character::Character(string name, int distanceTraveled,
 	int gold, int level, int exp, int strength,
 	int vitality, int dexterity, int intelligence,
-	int hp, int stamina, int statPoints, int skillPoints)
+	int hp, int stamina, int statPoints)
 {
 	this->distanceTraveled = distanceTraveled;
 
@@ -60,7 +59,6 @@ Character::Character(string name, int distanceTraveled,
 	this->luck = 0;
 
 	this->statPoints = statPoints;
-	this->skillPoints = skillPoints;
 
 	this->updateStats();
 }
@@ -86,7 +84,6 @@ void Character::initialize(const string name)
 	this->intelligence = 5;
 
 	this->statPoints = 0;
-	this->skillPoints = 0;
 
 	this->updateStats();
 }
@@ -146,8 +143,7 @@ string Character::getAsString() const
 		+ to_string(intelligence) + " "
 		+ to_string(hp) + " "
 		+ to_string(stamina) + " "
-		+ to_string(statPoints) + " "
-		+ to_string(skillPoints);
+		+ to_string(statPoints);
 }
 
 void Character::levelUP()
@@ -161,7 +157,6 @@ void Character::levelUP()
 			17 * level - 12)) + 100;
 
 		this->statPoints++;
-		this->skillPoints++;
 
 		this->updateStats();
 

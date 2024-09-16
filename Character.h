@@ -39,14 +39,13 @@ private:
 	int luck;
 
 	int statPoints;
-	int skillPoints;
 
 public:
 	Character();
 	Character(string name, int distanceTraveled,
 		int gold, int level, int exp, int strength,
 		int vitality, int dexterity, int intelligence,
-		int hp, int stamina, int statPoints, int skillPoints);
+		int hp, int stamina, int statPoints);
 	virtual ~Character();
 
 	// Functions

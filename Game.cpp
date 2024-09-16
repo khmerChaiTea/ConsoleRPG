@@ -242,7 +242,7 @@ void Game::loadCharacter()
 
 			Character temp(name, distanceTraveled, gold, level,
 				exp, strength, vitality, dexterity, intelligence,
-				hp, stamina, statPoints, skillPoints);
+				hp, stamina, statPoints);
 			this->characters.push_back(temp);
 
 			cout << "Character " << name << " loaded!\n";

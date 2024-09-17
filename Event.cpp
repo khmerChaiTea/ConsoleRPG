@@ -204,10 +204,34 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 		}
 		else if (!playerTurn && !escape && !enemiesDefeated)
 		{
+			cout << "= ENEMY TURN =" << "\n";
+
 			// Enemy attack
 			for (size_t i = 0; i < enemies.size(); i++)
 			{
+				cout << "Enemy: " << i << "\n";
 
+				cout << "Player roll: " << combatRollPlayer << "\n";
+				cout << "Enemy roll: " << combatRollEnemy << "\n\n";
+
+				if (combatRollPlayer < combatRollEnemy) // Hit
+				{
+					cout << "HIT!" << "\n\n";
+
+					damage = enemies[i].getDamage();
+					character.takeDamage(damage);
+					cout << "Damage: " << damage << "!\n\n";
+
+					if (!character.isAlive())
+					{
+						cout << "YOT ARE DEFEATED!\n\n";
+						playerDefeated = true;
+					}
+				}
+				else // Miss
+				{
+					cout << "MISSED!\n\n";
+				}
 			}
 
 			// End turn

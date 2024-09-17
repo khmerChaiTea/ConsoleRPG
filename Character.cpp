@@ -76,7 +76,7 @@ void Character::initialize(const string name)
 
 	this->name = name;
 	this->level = 1;
-	this->exp = 0;
+	this->exp = 10000;
 
 	this->strength = 5;
 	this->vitality = 5;
@@ -86,6 +86,8 @@ void Character::initialize(const string name)
 	this->statPoints = 0;
 
 	this->updateStats();
+
+	this->hp = this->hpMax;
 }
 
 void Character::printStats() const
@@ -175,8 +177,7 @@ void Character::updateStats()
 			- 6 * pow(level, 2)) +
 			17 * level - 12)) + 100;
 
-	this->hpMax = (this->vitality * 2) + (this->strength / 2);
-	this->hp = this->hpMax;
+	this->hpMax = (this->vitality * 2) + (this->strength / 2) + this->level * 5;
 	this->staminaMax = (this->vitality) + (this->strength / 2) + (this->dexterity / 3);
 	this->stamina = this->staminaMax;
 	this->damageMin = this->strength;
@@ -220,6 +221,8 @@ void Character::addToStat(int stat, int value)
 		}
 
 		this->statPoints -= value;
+
+		this->updateStats();
 	}
 }
 

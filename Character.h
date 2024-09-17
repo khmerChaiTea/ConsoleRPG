@@ -69,7 +69,7 @@ public:
 	inline const int& getStamina() const { return this->stamina; }
 	inline const int& getDamageMin() const { return this->damageMin; }
 	inline const int& getDamageMax() const { return this->damageMax; }
-	inline const int& getDamage() const { return rand()% (this->damageMax - this->damageMin) + this->damageMin; }
+	inline const int& getDamage() const { return this->damageMin + rand() % (this->damageMax - this->damageMin + 1); }
 	inline const int& getDefense() const { return this->defense; }
 	inline const int& getAccuracy() const { return this->accuracy; }
 

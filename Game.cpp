@@ -25,95 +25,122 @@ void Game::mainMenu()
 	cin.get();
 	system("CLS");
 
-	if (this->characters[activeCharacter].getExp() >=
-		this->characters[activeCharacter].getExpNext())
+	if (this->characters[activeCharacter].isAlive())
 	{
-		cout << "LEVEL UP AVAILABLE!\n\n";
-	}
+		if (this->characters[activeCharacter].getExp() >=
+			this->characters[activeCharacter].getExpNext())
+		{
+			cout << "LEVEL UP AVAILABLE!\n\n";
+		}
 
-	cout << "= Main Menu =" << "\n" << "\n";
+		cout << "= Main Menu =" << "\n\n";
 
-	cout << "= Active character: " <<
-		this->characters[activeCharacter].getName() << " Nr: "
-		<< this->activeCharacter + 1 << "/" << this->characters.size() <<
-		" =\n\n";
+		cout << "= Active character: " <<
+			this->characters[activeCharacter].getName() << " Nr: "
+			<< this->activeCharacter + 1 << "/" << this->characters.size() <<
+			" =\n\n";
 
-	cout << "0: Quit" << "\n";
-	cout << "1: Travel" << "\n";
-	cout << "2: Shop" << "\n";
-	cout << "3: Level up" << "\n";
-	cout << "4: Rest" << "\n";
-	cout << "5: Character sheet" << "\n";
-	cout << "6: Create new character" << "\n";
-	cout << "7: Select characters" << "\n";
-	cout << "8: Save characters" << "\n";
-	cout << "9: Load characters" << "\n";
+		cout << "0: Quit" << "\n";
+		cout << "1: Travel" << "\n";
+		cout << "2: Shop" << "\n";
+		cout << "3: Level up" << "\n";
+		cout << "4: Rest" << "\n";
+		cout << "5: Character sheet" << "\n";
+		cout << "6: Create new character" << "\n";
+		cout << "7: Select characters" << "\n";
+		cout << "8: Save characters" << "\n";
+		cout << "9: Load characters" << "\n";
 
-	cout << "\n";
-
-	cout << "\n" << "Choice: ";
-	cin >> this->choice;
-
-	while (cin.fail())
-	{
-		cout << "Faulty input!" << "\n";
-		cin.clear();
-		cin.ignore(100, '\n');
+		cout << "\n";
 
 		cout << "\n" << "Choice: ";
 		cin >> this->choice;
+
+		while (cin.fail())
+		{
+			cout << "Faulty input!" << "\n";
+			cin.clear();
+			cin.ignore(100, '\n');
+
+			cout << "\n" << "Choice: ";
+			cin >> this->choice;
+		}
+
+		cin.ignore(100, '\n');
+		cout << "\n";
+
+		switch (this->choice)
+		{
+		case 0: // Quit
+			playing = false;
+			break;
+
+		case 1: // Travel
+			Travel();
+
+			break;
+
+		case 2: // Shop
+
+			break;
+
+		case 3: // Level Up
+			levelUpCharacter();
+			break;
+
+		case 4: // Rest
+
+			break;
+
+		case 5: // Character sheet
+			characters[activeCharacter].printStats();
+			break;
+
+		case 6: // Create character
+			createNewCharacter();
+			saveCharacter();
+			break;
+
+		case 7: // Load character
+			selectCharacter();
+			break;
+
+		case 8: // Save character
+			saveCharacter();
+			cout << "Character saved successfully.\n";
+			break;
+
+		case 9: // Load character
+			loadCharacter();
+			break;
+
+		default:
+			break;
+		}
 	}
-
-	cin.ignore(100, '\n');
-	cout << "\n";
-
-	switch (this->choice)
+	else
 	{
-	case 0: // Quit
-		playing = false;
-		break;
+		cout << "= YOU ARE DEAD, LOAD? =" << "\n\n";
+		cout << "(0) Yes, (1) No" << "\n";
+		cin >> this->choice;
 
-	case 1: // Travel
-		Travel();
+		while (cin.fail() || this->choice < 0 || this->choice > 1)
+		{
+			cout << "Faulty input!" << "\n";
+			cin.clear();
+			cin.ignore(100, '\n');
 
-		break;
+			cout << "(0) Yes, (1) No" << "\n";
+			cin >> this->choice;
+		}
 
-	case 2: // Shop
-	
-		break;
+		cin.ignore(100, '\n');
+		cout << "\n";
 
-	case 3: // Level Up
-		levelUpCharacter();
-		break;
-
-	case 4: // Rest
-
-		break;
-
-	case 5: // Character sheet
-		characters[activeCharacter].printStats();
-		break;
-
-	case 6: // Create character
-		createNewCharacter();
-		saveCharacter();
-		break;
-
-	case 7: // Load character
-		selectCharacter();
-		break;
-
-	case 8: // Save character
-		saveCharacter();
-		cout << "Character saved successfully.";
-		break;
-
-	case 9: // Load character
-		loadCharacter();
-		break;
-
-	default:
-		break;
+		if (this->choice == 0)
+			this->loadCharacter();
+		else
+			playing = false;
 	}
 }
 
@@ -207,11 +234,9 @@ void Game::saveCharacter()
 
 void Game::loadCharacter()
 {
-	saveCharacter();
+	ifstream inFile(fileName);
 
 	this->characters.clear();
-
-	ifstream inFile(fileName);
 
 	string name = "";
 	int distanceTraveled = 0;

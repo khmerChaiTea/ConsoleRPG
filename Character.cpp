@@ -161,6 +161,8 @@ void Character::levelUP()
 		this->statPoints++;
 
 		this->updateStats();
+		
+		this->hp = hpMax;
 
 		cout << "YOU ARE NOW LEVEL " << this->level << "!\n\n";
 	}

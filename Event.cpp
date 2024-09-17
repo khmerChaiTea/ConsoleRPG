@@ -76,7 +76,14 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 			// Menu
 			//system("CLS");
 
+			cout << "= PLAYER TURN =" << "\n\n";
+			cout << "Continue..." << "\n\n";
+			cin.get();
+			system("CLS");
+
 			cout << "= Battle Menu =" << "\n\n";
+
+			cout << "HP: " << character.getHp() << " / " << character.getHpMax() << "\n\n";
 
 			cout << "0: Escape" << "\n";
 			cout << "1: Attack" << "\n";
@@ -153,7 +160,6 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 				cout << "\n";
 
 				// Attack roll
-
 				combatTotal = enemies[choice].getDefense() + character.getAccuracy();
 				enemyTotal = enemies[choice].getDefense() / (double)combatTotal * 100;
 				playerTotal = character.getAccuracy() / (double)combatTotal * 100;
@@ -206,10 +212,25 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 		{
 			cout << "= ENEMY TURN =" << "\n";
 
+			cout << "Continue..." << "\n\n";
+			cin.get();
+			system("CLS");
+
 			// Enemy attack
 			for (size_t i = 0; i < enemies.size(); i++)
 			{
+				cout << "Continue..." << "\n\n";
+				cin.get();
+				system("CLS");
+
 				cout << "Enemy: " << i << "\n";
+
+				// Attack roll
+				combatTotal = enemies[i].getDefense() + character.getAccuracy();
+				enemyTotal = enemies[i].getAccuracy() / (double)combatTotal * 100;
+				playerTotal = character.getDefense() / (double)combatTotal * 100;
+				combatRollPlayer = rand() % playerTotal + 1;
+				combatRollEnemy = rand() % enemyTotal + 1;
 
 				cout << "Player roll: " << combatRollPlayer << "\n";
 				cout << "Enemy roll: " << combatRollEnemy << "\n\n";
@@ -220,7 +241,9 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 
 					damage = enemies[i].getDamage();
 					character.takeDamage(damage);
-					cout << "Damage: " << damage << "!\n\n";
+
+					cout << "Damage: " << damage << "!\n";
+					cout << "HP: " << character.getHp() << " / " << character.getHpMax() << "\n\n";
 
 					if (!character.isAlive())
 					{

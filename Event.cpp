@@ -63,6 +63,7 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 	// Battle variables
 	int damage = 0;
 	int gainExp = 0;
+	int gainGold = 0;
 	int playerTotal = 0;
 	int enemyTotal = 0;
 	int combatTotal = 0;
@@ -136,6 +137,7 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 						"Hp: " << enemies[i].getHp() << "/" << enemies[i].getHpMax() << " - " <<
 						"Defense: " << enemies[i].getDefense() << " - " <<
 						"Accuracy: " << enemies[i].getAccuracy() << " - " <<
+						"Damage: " << enemies[i].getDamageMin() << " - " << enemies[i].getDamageMax() <<
 						"\n";
 				}
 
@@ -182,7 +184,10 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 						cout << "ENEMY DEFEATED!\n\n";
 						gainExp = enemies[choice].getExp();
 						character.gainExp(gainExp);
-						cout << "EXP GAINED: " << gainExp << "\n\n";
+						gainGold = rand() % enemies[choice].getLevel() * 10 + 1;
+						character.gainGold(gainGold);
+						cout << "EXP GAINED: " << gainExp << "\n";
+						cout << "GOLD GAINED: " << gainGold << "\n\n";
 						enemies.remove(choice);
 					}
 				}
@@ -219,14 +224,10 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 			// Enemy attack
 			for (size_t i = 0; i < enemies.size(); i++)
 			{
-				cout << "Continue..." << "\n\n";
-				cin.get();
-				system("CLS");
-
 				cout << "Enemy: " << i << "\n";
 
 				// Attack roll
-				combatTotal = enemies[i].getDefense() + character.getAccuracy();
+				combatTotal = enemies[i].getAccuracy() + character.getDefense();
 				enemyTotal = enemies[i].getAccuracy() / (double)combatTotal * 100;
 				playerTotal = character.getDefense() / (double)combatTotal * 100;
 				combatRollPlayer = rand() % playerTotal + 1;
@@ -247,7 +248,7 @@ void Event::enemyEncounter(Character& character, dArr<Enemy>& enemies)
 
 					if (!character.isAlive())
 					{
-						cout << "YOT ARE DEFEATED!\n\n";
+						cout << "YOU ARE DEFEATED!\n\n";
 						playerDefeated = true;
 					}
 				}
@@ -281,6 +282,7 @@ void Event::puzzleEncounter(Character& character)
 	int userAns = 0;
 	int chances = 3;
 	int gainExp = chances * character.getLevel() * (rand() % 10 + 1);
+	int gainGold = chances * character.getLevel() * (rand() % 10 + 1);
 
 	Puzzle puzzle("Puzzles/1.txt");
 
@@ -311,7 +313,9 @@ void Event::puzzleEncounter(Character& character)
 			completed = true;
 
 			character.gainExp(gainExp);
-			cout << "YOU GAINED " << gainExp << " EXP!\n\n";
+			character.gainGold(gainGold);
+			cout << "YOU GAINED " << gainExp << " EXP!\n";
+			cout << "YOU GAINED " << gainGold << " GOLD!\n\n";
 		}
 	}
 

@@ -16,7 +16,18 @@ Game::~Game()
 // Functions
 void Game::initGame()
 {
-	createNewCharacter();
+	ifstream in;
+	in.open("characters.txt");
+
+	if (in.is_open())
+		this->loadCharacter();
+	else
+	{
+		createNewCharacter();
+		this->saveCharacter();
+	}
+
+	in.close();
 }
 
 void Game::mainMenu()
@@ -73,6 +84,7 @@ void Game::mainMenu()
 		{
 		case 0: // Quit
 			playing = false;
+			this->saveCharacter();
 			break;
 
 		case 1: // Travel

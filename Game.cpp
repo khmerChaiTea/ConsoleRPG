@@ -88,8 +88,7 @@ void Game::mainMenu()
 			break;
 
 		case 1: // Travel
-			Travel();
-
+			travel();
 			break;
 
 		case 2: // Shop
@@ -101,7 +100,7 @@ void Game::mainMenu()
 			break;
 
 		case 4: // Rest
-
+			rest();
 			break;
 
 		case 5: // Character sheet
@@ -330,11 +329,62 @@ void Game::selectCharacter()
 	cout << this->characters[this->activeCharacter].getName() << " is SELECTED!\n\n";
 }
 
-void Game::Travel()
+void Game::travel()
 {
 	this->characters[activeCharacter].travel();
 
 	Event ev;
 
 	ev.generateEvent(this->characters[activeCharacter], this->enemies);
+}
+
+void Game::rest()
+{
+	int restCost = this->characters[this->activeCharacter].getHpMax() -
+		this->characters[this->activeCharacter].getHp();
+	cout << "= Rest =" << "\n\n";
+	cout << "Resting costs you: " << restCost << "\n";
+	cout << "Your gold: " << this->characters[this->activeCharacter].getGold() << "\n";
+	cout << "HP: " << this->characters[this->activeCharacter].getHp() <<
+		" / " << this->characters[this->activeCharacter].getHpMax() << "\n\n";
+
+	if (this->characters[this->activeCharacter].getGold() < restCost)
+	{
+		cout << "NOT ENOUGH MONEY, SORRY BUDDY!" << "\n\n";
+	}
+	else if (this->characters[this->activeCharacter].getHp() >= this->characters[this->activeCharacter].getHpMax())
+	{
+		cout << "ALREADY AT FULL HEALTH BUDDY!" << "\n\n";
+	}
+	else
+	{
+
+		cout << "Rest? (0) Yes, (1) No..." << "\n";
+
+		cin >> this->choice;
+
+		while (cin.fail() || this->choice < 0 || this->choice > 1)
+		{
+			cout << "Faulty input!" << "\n";
+			cin.clear();
+			cin.ignore(100, '\n');
+
+			cout << "Rest? (0) Yes, (1) No..." << "\n";
+			cin >> this->choice;
+		}
+
+		cin.ignore(100, '\n');
+		cout << "\n";
+
+		if (this->choice == 0)
+		{
+			this->characters[this->activeCharacter].resetHP();
+			this->characters[this->activeCharacter].payGold(restCost);
+			cout << "RESTED!" << "\n";
+		}
+		else
+		{
+			cout << "MAYBE NEXT TIME!" << "\n";
+		}
+	}
 }

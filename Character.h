@@ -55,6 +55,7 @@ public:
 	void levelUP();
 	void updateStats();
 	void addToStat(int stat, int value);
+	inline void resetHP() { this->hp = this->hpMax; }
 
 	// Accessors
 	inline const int& getDistTravel() const { return this->distanceTraveled; }
@@ -72,11 +73,13 @@ public:
 	inline const int& getDamage() const { return this->damageMin + rand() % (this->damageMax - this->damageMin + 1); }
 	inline const int& getDefense() const { return this->defense; }
 	inline const int& getAccuracy() const { return this->accuracy; }
+	inline const int getGold() const { return this->gold; }
 
 	// Modifier
 	inline void setDistTraveled(const int& distance) { this->distanceTraveled = distance; }
 	inline void travel() { this->distanceTraveled++; }
 	inline void gainExp(const int exp) { this->exp += exp; }
 	inline void gainGold(const int gold) { this->gold += gold; }
+	inline void payGold(const int gold) { this->gold -= gold; }
 	void takeDamage(const int damage);
 };

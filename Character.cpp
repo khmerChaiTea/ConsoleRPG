@@ -76,7 +76,7 @@ void Character::initialize(const string name)
 
 	this->name = name;
 	this->level = 1;
-	this->exp = 10000;
+	this->exp = 0;
 
 	this->strength = 5;
 	this->vitality = 5;
@@ -86,8 +86,6 @@ void Character::initialize(const string name)
 	this->statPoints = 0;
 
 	this->updateStats();
-
-	this->hp = this->hpMax;
 }
 
 void Character::printStats() const
@@ -129,7 +127,7 @@ void Character::printStats() const
 		<< " Def: " << this->armor_arms.getDefense() << "\n";
 	cout << "= Armor Legs: " << this->armor_legs.getName()
 		<< " Lvl: " << this->armor_legs.getLevel()
-		<< " Def: " << this->armor_legs.getDefense() << "\n";
+		<< " Def: " << this->armor_legs.getDefense() << "\n\n";
 }
 
 string Character::getAsString() const
@@ -161,8 +159,6 @@ void Character::levelUP()
 		this->statPoints++;
 
 		this->updateStats();
-		
-		this->hp = hpMax;
 
 		cout << "YOU ARE NOW LEVEL " << this->level << "!\n\n";
 	}
@@ -187,6 +183,8 @@ void Character::updateStats()
 	this->defense = this->dexterity + (this->intelligence / 2);
 	this->accuracy = (this->dexterity / 2) + this->intelligence;
 	this->luck = this->intelligence;
+
+	this->hp = this->hpMax;
 }
 
 void Character::addToStat(int stat, int value)

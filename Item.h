@@ -14,6 +14,7 @@ private:
 	int rarity;
 
 public:
+	Item(int level);
 	Item(std::string name = "NONE", int level = 0,
 		int buyValue = 0,
 		int sellValue = 0,
@@ -31,5 +32,17 @@ public:
 	inline const int& getRarity() const { return this->rarity; }
 
 	// Modifiers
+
+	// Static
+	//dArr<std::string> names;
+	//static void initNames();
 };
 
+enum rarity
+{
+	COMMON = 0,
+	UNCOMMON,
+	RARE,
+	LEGENDARY,
+	MYTHIC
+};

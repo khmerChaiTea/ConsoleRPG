@@ -27,6 +27,23 @@ void Game::initGame()
 		this->saveCharacter();
 	}
 
+	// Clone functions help create weapons and armors
+	//Weapon w1;
+	//Armor a1;
+	//Item* item = w1.clone();
+	//Item* item2 = a1.clone();
+
+	//Weapon* w = dynamic_cast<Weapon*>(item);
+	//if (w != nullptr)
+	//	cout << w->getDamageMax() << "\n";
+
+	//Armor* a = dynamic_cast<Armor*>(item2);
+	//if (a != nullptr)
+	//	cout << a->getDefense() << "\n";
+
+	//delete item;
+	//delete item2;
+
 	in.close();
 }
 
